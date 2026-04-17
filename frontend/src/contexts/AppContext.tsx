@@ -7,6 +7,9 @@ export interface AnalysisResult {
   isHealthy: boolean;
   confidence: number;
   explanation: string;
+  reason?: string;
+  deficiency?: string;
+  diet?: string;
   date: string;
   doctorReviewed: boolean;
   doctorSuggestion?: string;

@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from ml_model.predict import predict_image
+from ml_model.predict import disease_explanation_for_label, predict_image
 
 from .models import Prediction
 
@@ -18,6 +18,24 @@ def _user_payload(user):
         "email": getattr(user, "email", "") or "",
         "name": (user.get_full_name() or user.get_username()),
     }
+
+
+def _prediction_reason(prediction: str) -> str:
+    key = (prediction or "").lower().strip().replace(" ", "_")
+    reasons = {
+        "healthy_nail": "Nail appears healthy with no obvious disease pattern detected.",
+        "clubbing": "Often linked to long-term low oxygen levels or heart/lung conditions.",
+        "pitting": "Commonly associated with psoriasis, eczema, or alopecia areata.",
+        "blue_finger": "Can occur due to reduced blood oxygen, cold exposure, or circulation issues.",
+        "onychgrphosis": "Usually caused by repeated trauma, poor nail care, or aging-related thickening.",
+        "acral_lentiginous_melanoma": "Pigmented lesion pattern that can be serious and should be medically evaluated quickly.",
+    }
+    if "healthy" in key or "normal" in key:
+        return reasons["healthy_nail"]
+    return reasons.get(
+        key,
+        "Possible nail abnormality detected. Consider consulting a dermatologist for confirmation.",
+    )
 
 
 @api_view(["POST"])
@@ -107,15 +125,16 @@ def predict_api(request):
         )
 
         image_url = pred.image.url if pred.image else None
-        return Response(
-            {
-                "id": pred.id,
-                "prediction": pred.prediction,
-                "confidence": pred.confidence,
-                "created_at": pred.created_at.isoformat(),
-                "image_url": image_url,
-            }
-        )
+        # Spread model output (prediction, confidence %, reason) + API metadata
+        payload = {
+            **result,
+            "id": pred.id,
+            "created_at": pred.created_at.isoformat(),
+            "image_url": image_url,
+        }
+        if not payload.get("reason"):
+            payload["reason"] = _prediction_reason(pred.prediction)
+        return Response(payload)
     except Exception as e:
         return Response({"error": str(e)}, status=500)
 
@@ -123,17 +142,23 @@ def predict_api(request):
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def predictions_list_api(request):
-    qs = Prediction.objects.filter(user=request.user).order_by("-created_at")[:50]
-    data = [
-        {
-            "id": p.id,
-            "prediction": p.prediction,
-            "confidence": p.confidence,
-            "created_at": p.created_at.isoformat(),
-            "image_url": (p.image.url if p.image else None),
-        }
-        for p in qs
-    ]
+    qs = Prediction.objects.filter(user=request.user).order_by("-created_at")
+    data = []
+    for p in qs:
+        extras = disease_explanation_for_label(p.prediction)
+        reason = extras["reason"] or _prediction_reason(p.prediction)
+        data.append(
+            {
+                "id": p.id,
+                "prediction": p.prediction,
+                "confidence": p.confidence,
+                "reason": reason,
+                "deficiency": extras["deficiency"],
+                "diet": extras["diet"],
+                "created_at": p.created_at.isoformat(),
+                "image_url": (p.image.url if p.image else None),
+            }
+        )
     return Response({"results": data})
 
 # @api_view(['POST'])

@@ -27,7 +27,10 @@ const ChatAssistant = () => {
   const { analyses, currentAnalysis } = useApp();
   const analysis = analyses.find(a => a.id === id) || currentAnalysis;
   const [messages, setMessages] = useState<Message[]>([
-    { role: "ai", text: `Hello! I'm your AI health assistant. ${analysis ? `I can see your analysis for "${analysis.condition}" with ${analysis.confidence}% confidence. I'm here to help explain the results and facilitate communication with your doctor. How can I help you?` : "How can I assist you today?"}` },
+    {
+      role: "ai",
+      text: `Hello! I'm your AI health assistant. ${analysis ? `I can see your analysis for "${analysis.condition}" with ${analysis.confidence.toFixed(2)}% confidence. I'm here to help explain the results and facilitate communication with your doctor. How can I help you?` : "How can I assist you today?"}`,
+    },
   ]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);

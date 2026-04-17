@@ -17,6 +17,9 @@ export type PredictionResponse = {
   id: number;
   prediction: string;
   confidence: number;
+  reason?: string;
+  deficiency?: string;
+  diet?: string;
   created_at: string;
   image_url: string | null;
 };
