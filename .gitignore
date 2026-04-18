@@ -6,6 +6,14 @@ env/
 __pycache__/
 *.pyc
 
+# Django specific
+db.sqlite3
+media/
+staticfiles/
+
+# ML Model files
+*.h5
+
 # Node
 node_modules/
 dist/
