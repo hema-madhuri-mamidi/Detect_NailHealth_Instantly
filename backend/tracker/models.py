@@ -6,7 +6,7 @@ class Prediction(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="predictions"
     )
-    image = models.ImageField(upload_to="predictions/", null=True, blank=True)
+    image = models.FileField(upload_to="predictions/", null=True, blank=True)
     prediction = models.CharField(max_length=255)
     confidence = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
