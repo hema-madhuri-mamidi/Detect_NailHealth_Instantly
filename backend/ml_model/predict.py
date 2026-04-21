@@ -19,7 +19,10 @@ from pathlib import Path
 
 import cv2
 import numpy as np
-from tensorflow.keras.models import load_model
+try:
+    from tensorflow.keras.models import load_model
+except ImportError:
+    load_model = None
 
 from ml_model.image_preprocessing import preprocess_rgb_image
 
@@ -154,6 +157,10 @@ def _get_model():
     global _model
     if _model is not None:
         return _model
+
+    if load_model is None:
+        logger.warning("TensorFlow not available. Model loading disabled.")
+        return None
 
     model_path = Path(__file__).resolve().parent / "nail_disease_model.h5"
     if not model_path.exists():
@@ -296,6 +303,14 @@ def predict_image(image_or_bytes):
 
     # Prediction (match training: preprocess_rgb_image -> float [0,255] for EfficientNet)
     model = _get_model()
+    if model is None:
+        return {
+            "prediction": "Model not available",
+            "confidence": 0,
+            "reason": "Machine learning model is not available. Please contact administrator.",
+            "deficiency": "",
+            "diet": "",
+        }
     batch = np.expand_dims(image, axis=0).astype(np.float32)
     if not _model_has_nested_rescaling(model):
         # Older CNN trained with ImageDataGenerator(rescale=1/255) expects [0,1].
