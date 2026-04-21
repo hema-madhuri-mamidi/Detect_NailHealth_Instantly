@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
+import dj_database_url
 from pathlib import Path
 from decouple import config
 
@@ -21,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-xxgkz-%(-^=x6&vdcf+ed3zsc)y^jo+)zjass%-(-+q3=%*c%-')
+SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = False
 
 # Allow all hosts for Render deployment
 ALLOWED_HOSTS = ['*']
@@ -82,14 +84,7 @@ WSGI_APPLICATION = 'nail_health_tracker.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='nail_health_db'),
-        'USER': config('DB_USER', default='postgres'),
-        'PASSWORD': config('DB_PASSWORD', default=''),
-        'HOST': config('DB_HOST', default='localhost'),
-        'PORT': config('DB_PORT', default='5432'),
-    }
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
@@ -160,5 +155,4 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_ALL_ORIGINS = DEBUG
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-import os
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
