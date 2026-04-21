@@ -157,13 +157,16 @@ def _get_model():
 
     model_path = Path(__file__).resolve().parent / "nail_disease_model.h5"
     if not model_path.exists():
-        raise FileNotFoundError(
-            f"Model file not found at '{model_path}'. "
-            "Place your .h5 file there or update the path in ml_model/predict.py."
-        )
+        logger.warning(f"Model file not found at '{model_path}'. Model loading disabled.")
+        return None
 
-    _model = load_model(str(model_path))
-    return _model
+    try:
+        _model = load_model(str(model_path))
+        logger.info("Model loaded successfully")
+        return _model
+    except Exception as e:
+        logger.error(f"Failed to load model: {e}")
+        return None
 
 
 def _model_has_nested_rescaling(model, depth=0, max_depth=32):
