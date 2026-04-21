@@ -163,7 +163,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:8081",
-    "https://your-frontend-vercel-url.vercel.app",  # Replace with your actual Vercel URL
+    "https://detect-nail-health-instantly.vercel.app",  # Replace with your actual Vercel URL
 ]
 CORS_ALLOW_ALL_ORIGINS = DEBUG
 
