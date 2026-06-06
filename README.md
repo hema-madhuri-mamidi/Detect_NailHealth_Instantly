@@ -1,23 +1,33 @@
-Nail Disease Detection Using Deep Learning with Doctor Consultation System
+Nail Disease Detection Using Deep Learning
 
-📌 Overview
+An AI-powered healthcare web application that helps users identify potential nail diseases by analyzing uploaded nail images. The system uses a deep learning model based on EfficientNetB0 to classify nail conditions and provide meaningful health insights such as disease causes, deficiency information, and diet recommendations.
 
-Nail Disease Detection is an AI-powered healthcare web application that helps users identify potential nail diseases by analyzing uploaded nail images. The system uses a deep learning model based on EfficientNetB0 to classify nail conditions and provide meaningful insights such as disease causes, deficiency information, and diet recommendations.
+🔗 Project Links
 
-To improve reliability, the platform includes a doctor verification system that allows medical professionals to review AI predictions and provide expert consultation.
+🌐 Live Demo: https://detect-nail-health-instantly.vercel.app/
+
+💻 GitHub Repository: https://github.com/hema-madhuri-mamidi/Detect_NailHealth_Instantly
+
+---
+
+🚀 Deployment
+
+- Frontend deployed on Vercel
+- Backend API deployed on Render
+
+This deployment provided hands-on experience with hosting, API integration, and real-world application deployment.
 
 ---
 
 🚀 Features
 
-- 📷 Nail Image Upload
+- 📷 Nail Image Upload & Analysis
 - 🤖 AI-Based Disease Prediction
 - 📊 Confidence Score Display
-- 🩺 Doctor Verification Module
-- 📅 Appointment Booking System
-- 💳 Payment Integration
-- 📄 Downloadable Medical Reports
-- 🥗 Diet & Health Recommendations
+- 🥗 Disease Causes & Deficiency Information
+- 🥬 Personalized Diet Recommendations
+- 📄 Medical Report Generation
+- 🩺 Doctor Consultation & Appointment Booking Interface (Frontend Prototype)
 
 ---
 
@@ -40,9 +50,9 @@ Machine Learning
 
 Database
 
-- SQLite / MySQL
+- SQLite
 
-Additional Libraries
+Libraries
 
 - NumPy
 - Pillow (PIL)
@@ -51,16 +61,17 @@ Additional Libraries
 
 🧠 Model Information
 
-The disease classification model is built using Transfer Learning with EfficientNetB0. The model is trained on nail disease images and can classify conditions such as:
+The disease classification model is built using Transfer Learning with EfficientNetB0 and can classify multiple nail conditions, including:
 
 - Healthy Nail
 - Pitting
 - Clubbing
-- Onychogryphosis
 - Blue Finger
 - Melanoma
 
-The system returns:
+Prediction Output
+
+The system provides:
 
 - Predicted Disease
 - Confidence Score
@@ -73,56 +84,66 @@ The system returns:
 ⚙️ Workflow
 
 1. User uploads a nail image.
-2. Backend preprocesses the image.
-3. Deep learning model analyzes the image.
+2. The backend preprocesses the image.
+3. EfficientNetB0 analyzes the image.
 4. Disease prediction is generated.
 5. Results are displayed with health insights.
-6. Doctor reviews the prediction.
-7. User can book an appointment if required.
-8. Medical report is generated and stored.
-
----
-
-🏗️ System Architecture
-
-User Upload → Django Backend → Deep Learning Model → Prediction Results → Doctor Verification → Appointment & Payment → Report Generation
+6. Medical report is generated.
+7. Users can access doctor consultation and appointment booking interfaces.
 
 ---
 
 🎯 Objectives
 
-- Early detection of nail diseases using AI.
+- Support early detection of nail diseases using AI.
 - Improve healthcare accessibility.
-- Assist doctors with AI-supported diagnosis.
+- Assist healthcare decision-making with AI-powered insights.
 - Provide personalized health recommendations.
-- Enable seamless doctor consultation.
+- Explore practical applications of Deep Learning in healthcare.
 
 ---
 
 📈 Results
 
-- Achieved approximately 90% validation accuracy.
-- Successfully identifies multiple nail disease categories.
-- Provides actionable healthcare insights and recommendations.
+- Achieved approximately 90% validation accuracy
+- Successfully classified multiple nail disease categories
+- Generated actionable healthcare insights and recommendations
 
 ---
+
+## 📸 Screenshots
+
+### Upload Page
+![Upload Page](images/dti_1.jpeg)
+
+### Prediction Result
+![Prediction Result](images/dti_2.jpeg)
+
+### Doctor FeedBack
+![Doctor FeedBack](images/dti_3.jpeg)
+
+### Appointment Booking
+![Appointment Booking](images/dti_4.jpeg)
 
 🔮 Future Enhancements
 
+- Doctor Verification Backend
+- Appointment Management System
+- Payment Integration
 - Mobile Application Development
 - Real-Time Camera Detection
 - Additional Disease Categories
-- Hospital Management System Integration
 - AI Healthcare Chatbot
+- Hospital Management System Integration
 
 ---
 
-👨‍💻 Team-lead
+👨‍💻 Developer
 
 Hema Madhuri Mamidi
+Team Lead & Primary Developer
 
 ---
-
 
 📜 License
 
