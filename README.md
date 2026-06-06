@@ -1,16 +1,16 @@
-Nail Disease Detection Using Deep Learning
+# Nail Disease Detection Using Deep Learning
 
 An AI-powered healthcare web application that helps users identify potential nail diseases by analyzing uploaded nail images. The system uses a deep learning model based on EfficientNetB0 to classify nail conditions and provide meaningful health insights such as disease causes, deficiency information, and diet recommendations.
 
-🔗 Project Links
+## 🔗 Project Links
 
-🌐 Live Demo: https://detect-nail-health-instantly.vercel.app/
+### 🌐 Live Demo: https://detect-nail-health-instantly.vercel.app/
 
-💻 GitHub Repository: https://github.com/hema-madhuri-mamidi/Detect_NailHealth_Instantly
+### 💻 GitHub Repository: https://github.com/hema-madhuri-mamidi/Detect_NailHealth_Instantly
 
 ---
 
-🚀 Deployment
+## 🚀 Deployment
 
 - Frontend deployed on Vercel
 - Backend API deployed on Render
@@ -19,7 +19,7 @@ This deployment provided hands-on experience with hosting, API integration, and 
 
 ---
 
-🚀 Features
+## 🚀 Features
 
 - 📷 Nail Image Upload & Analysis
 - 🤖 AI-Based Disease Prediction
@@ -31,35 +31,35 @@ This deployment provided hands-on experience with hosting, API integration, and 
 
 ---
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 
-Frontend
+### Frontend
 
 - React.js
 
-Backend
+### Backend
 
 - Django
 - Django REST Framework
 
-Machine Learning
+### Machine Learning
 
 - TensorFlow
 - Keras
 - EfficientNetB0
 
-Database
+### Database
 
 - SQLite
 
-Libraries
+### Libraries
 
 - NumPy
 - Pillow (PIL)
 
 ---
 
-🧠 Model Information
+## 🧠 Model Information
 
 The disease classification model is built using Transfer Learning with EfficientNetB0 and can classify multiple nail conditions, including:
 
@@ -81,7 +81,7 @@ The system provides:
 
 ---
 
-⚙️ Workflow
+## ⚙️ Workflow
 
 1. User uploads a nail image.
 2. The backend preprocesses the image.
@@ -93,7 +93,7 @@ The system provides:
 
 ---
 
-🎯 Objectives
+## 🎯 Objectives
 
 - Support early detection of nail diseases using AI.
 - Improve healthcare accessibility.
@@ -103,7 +103,7 @@ The system provides:
 
 ---
 
-📈 Results
+## 📈 Results
 
 - Achieved approximately 90% validation accuracy
 - Successfully classified multiple nail disease categories
@@ -114,18 +114,18 @@ The system provides:
 ## 📸 Screenshots
 
 ### Upload Page
-![Upload Page](images/dti_1.jpeg)
+![Upload Page](images/dti_1.jpg)
 
 ### Prediction Result
-![Prediction Result](images/dti_2.jpeg)
+![Prediction Result](images/dti_2.jpg)
 
 ### Doctor FeedBack
-![Doctor FeedBack](images/dti_3.jpeg)
+![Doctor FeedBack](images/dti_3.jpg)
 
 ### Appointment Booking
-![Appointment Booking](images/dti_4.jpeg)
+![Appointment Booking](images/dti_4.jpg)
 
-🔮 Future Enhancements
+## 🔮 Future Enhancements
 
 - Doctor Verification Backend
 - Appointment Management System
@@ -138,13 +138,13 @@ The system provides:
 
 ---
 
-👨‍💻 Developer
+## 👨‍💻 Developer
 
-Hema Madhuri Mamidi
+Hema Madhuri Mamidi -
 Team Lead & Primary Developer
 
 ---
 
-📜 License
+## 📜 License
 
 This project is developed for educational and research purposes.
